@@ -28,6 +28,9 @@ export default async function RootLayout({ children }) {
   // }, []);
 
   // console.log(topics);
+
+  // fetch(`https://...`, { next: { revalidate: false | 0 | number } })
+
   const response = await fetch("http://localhost:9999/topics");
   const topics = await response.json();
 
