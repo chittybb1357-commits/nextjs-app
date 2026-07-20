@@ -7,14 +7,14 @@ export default function Controls() {
   const { id } = useParams();
   const router = useRouter();
   const handelDelete = () => {
-    if (window.confirm("정말로 삭제하시겠습니까?")) {
-      fetch(`http://localhost:9999/topics/${id}`, { method: "DELETE" })
-        .then(res => res.json())
-        .then(result => {
-          router.push(`/`);
-          router.refresh();
-        });
-    }
+    if (!window.confirm("정말로 삭제하시겠습니까?")) return;
+
+    fetch(`http://localhost:9999/topics/${id}`, { method: "DELETE" })
+      .then(res => res.json())
+      .then(result => {
+        router.push(`/`);
+        router.refresh();
+      });
   };
 
   return (
