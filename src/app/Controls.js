@@ -1,11 +1,11 @@
 "use client";
-
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function Controls() {
   const { id } = useParams();
   const router = useRouter();
+
   const handelDelete = () => {
     if (!window.confirm("정말 삭제할까요?")) return;
 
@@ -22,13 +22,11 @@ export default function Controls() {
       <Link className="btn btn-primary" href="/create">
         Create
       </Link>
-
       {id && (
         <>
           <Link className="btn btn-secondary" href={`/update/${id}`}>
             Update
           </Link>
-
           <button type="button" className="btn btn-danger" onClick={handelDelete}>
             Delete
           </button>
