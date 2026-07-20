@@ -62,6 +62,8 @@ export default async function RootLayout({ children }) {
         <main>
           {children}
 
+          <hr />
+
           <div className="d-flex gap-1">
             <Link className="btn btn-primary" href="/create">
               Create
