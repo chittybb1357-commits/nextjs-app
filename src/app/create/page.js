@@ -23,8 +23,9 @@ export default function Create() {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ title, message }),
+            body: JSON.stringify({ title, message }), //"title": "제목", "message": "설명"
           };
+
           fetch("http://localhost:9999/topics", options)
             .then(res => res.json())
             .then(result => {
