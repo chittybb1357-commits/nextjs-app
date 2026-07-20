@@ -19,21 +19,18 @@ export default async function RootLayout({ children }) {
   // const [topics, setTopics] = useState([]);
 
   // useEffect(() => {
-  //   const ULR = "http://localhost:9999/topics";
-
-  //   fetch(ULR)
+  //   fetch("http://localhost:9999/topics")
   //     .then(res => res.json())
   //     .then(result => {
   //       setTopics(result);
   //     });
   // }, []);
-
   // console.log(topics);
-
-  // fetch(`https://...`, { next: { revalidate: false | 0 | number } })
 
   const response = await fetch("http://localhost:9999/topics");
   const topics = await response.json();
+
+  console.log("공통 레이아웃 작동");
 
   return (
     <html lang="en" data-scroll-behavior="smooth">
@@ -48,7 +45,7 @@ export default async function RootLayout({ children }) {
 
             <ul className="nav d-flex">
               {
-                // topics배열 활용 메뉴 출력
+                //topics배열 활용 메뉴 출력
                 topics.map(topic => {
                   return (
                     <li key={topic.id} className="nav-item">
