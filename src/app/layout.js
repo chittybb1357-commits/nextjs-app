@@ -1,3 +1,5 @@
+// "use client";
+
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
@@ -5,14 +7,30 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Link from "next/link";
 import Script from "next/script";
+// import { useState, useEffect } from "react";
 
 export const metadata = {
   title: "웹 언어",
   description: "웹페이지 구현하기",
 };
 
-export default function RootLayout({ children }) {
-  console.log("공통 레이아웃 작동");
+export default async function RootLayout({ children }) {
+  // const [topics, setTopics] = useState([]);
+
+  // useEffect(() => {
+  //   const ULR = "http://localhost:9999/topics";
+
+  //   fetch(ULR)
+  //     .then(res => res.json())
+  //     .then(result => {
+  //       setTopics(result);
+  //     });
+  // }, []);
+
+  // console.log(topics);
+  const ULR = "http://localhost:9999/topics";
+  const response = await fetch(ULR);
+  const topics = await response.json();
 
   return (
     <html lang="en" data-scroll-behavior="smooth">
@@ -26,23 +44,18 @@ export default function RootLayout({ children }) {
             </h1>
 
             <ul className="nav d-flex">
-              <li className="nav-item">
-                <Link className="nav-link" href="/read/1">
-                  html
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link className="nav-link" href="/read/2">
-                  css
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link className="nav-link" href="/read/3">
-                  javascript
-                </Link>
-              </li>
+              {
+                // topics배열 활용 메뉴 출력
+                topics.map(topic => {
+                  return (
+                    <li key={topic.id} className="nav-item">
+                      <Link className="nav-link" href={`/read/${topic.id}`}>
+                        {topic.title}
+                      </Link>
+                    </li>
+                  );
+                })
+              }
             </ul>
           </div>
         </nav>
