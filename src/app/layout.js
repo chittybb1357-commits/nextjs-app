@@ -30,7 +30,6 @@ export default async function RootLayout({ children }) {
   const topics = await response.json();
 
   console.log("공통 레이아웃 작동");
-
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body>
@@ -41,7 +40,6 @@ export default async function RootLayout({ children }) {
                 Home
               </Link>
             </h1>
-
             <ul className="nav d-flex">
               {
                 //topics배열 활용 메뉴 출력
@@ -58,15 +56,11 @@ export default async function RootLayout({ children }) {
             </ul>
           </div>
         </nav>
-
         <main>
           {children}
-
           <hr />
-
           <Controls />
         </main>
-
         <Script src="/main.js" strategy="afterInteractive" />
       </body>
     </html>
