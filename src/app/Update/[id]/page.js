@@ -1,11 +1,9 @@
 "use client";
-
 import { useRouter, useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 
 export default function Update() {
   console.log("Update Page 작동");
-
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
@@ -23,12 +21,10 @@ export default function Update() {
   return (
     <>
       <h3 style={styles.title}>Update Form</h3>
-
       <form
         action=""
         onSubmit={e => {
           e.preventDefault();
-
           const options = {
             method: "PATCH",
             headers: {
@@ -39,7 +35,6 @@ export default function Update() {
               message,
             }),
           };
-
           fetch(`${process.env.NEXT_PUBLIC_API_URL}/topics/${id}`, options)
             .then(res => res.json())
             .then(result => {
@@ -51,7 +46,6 @@ export default function Update() {
           <label htmlFor="title" className="form-label">
             title
           </label>
-
           <input
             type="text"
             className="form-control"
@@ -64,12 +58,10 @@ export default function Update() {
             placeholder="글 제목을 입력해주세요"
           />
         </div>
-
         <div className="mb-3">
           <label htmlFor="message" className="form-label">
             Message
           </label>
-
           <textarea
             name="message"
             value={message}
@@ -81,7 +73,6 @@ export default function Update() {
             rows="3"
           ></textarea>
         </div>
-
         <button type="submit" className="btn btn-primary">
           입력
         </button>
